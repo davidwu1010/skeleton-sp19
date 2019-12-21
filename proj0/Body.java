@@ -29,4 +29,16 @@ public class Body {
         double distance = calcDistance(b);
         return G * mass * b.mass / (distance * distance);
     }
+
+    public double calcForceExertedByX(Body b) {
+        double distance = calcDistance(b);
+        double totalForce = calcForceExertedBy(b);
+        return totalForce / distance * (b.xxPos - xxPos);
+    }
+
+    public double calcForceExertedByY(Body b) {
+        double distance = calcDistance(b);
+        double totalForce = calcForceExertedBy(b);
+        return totalForce / distance * (b.yyPos - yyPos);
+    }
 }
