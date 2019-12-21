@@ -18,4 +18,8 @@ public class Body {
     public Body(Body b) {
         this(b.xxPos, b.yyPos, b.xxVel, b.yyVel, b.mass, b.imgFileName);
     }
+
+    public double calcDistance(Body b) {
+        return Math.sqrt(Math.pow(xxPos - b.xxPos, 2) + Math.pow(yyPos - b.yyPos, 2));
+    }
 }
