@@ -26,7 +26,7 @@ public class Body {
     }
 
     public double calcForceExertedBy(Body b) {
-        if (b == this) {
+        if (b.equals(this)) {
             return 0;
         }
         double distance = calcDistance(b);
@@ -34,7 +34,7 @@ public class Body {
     }
 
     public double calcForceExertedByX(Body b) {
-        if (b == this) {
+        if (b.equals(this)) {
             return 0;
         }
         double distance = calcDistance(b);
@@ -43,7 +43,7 @@ public class Body {
     }
 
     public double calcForceExertedByY(Body b) {
-        if (b == this) {
+        if (b.equals(this)) {
             return 0;
         }
         double distance = calcDistance(b);
