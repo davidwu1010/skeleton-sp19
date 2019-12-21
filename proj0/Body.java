@@ -26,19 +26,44 @@ public class Body {
     }
 
     public double calcForceExertedBy(Body b) {
+        if (b == this) {
+            return 0;
+        }
         double distance = calcDistance(b);
         return G * mass * b.mass / (distance * distance);
     }
 
     public double calcForceExertedByX(Body b) {
+        if (b == this) {
+            return 0;
+        }
         double distance = calcDistance(b);
         double totalForce = calcForceExertedBy(b);
         return totalForce / distance * (b.xxPos - xxPos);
     }
 
     public double calcForceExertedByY(Body b) {
+        if (b == this) {
+            return 0;
+        }
         double distance = calcDistance(b);
         double totalForce = calcForceExertedBy(b);
         return totalForce / distance * (b.yyPos - yyPos);
+    }
+
+    public double calcNetForceExertedByX(Body[] bodies) {
+        double netForceByX = 0;
+        for (Body b: bodies) {
+            netForceByX += calcForceExertedByX(b);
+        }
+        return netForceByX;
+    }
+
+    public double calcNetForceExertedByY(Body[] bodies) {
+        double netForceByY = 0;
+        for (Body b: bodies) {
+            netForceByY += calcForceExertedByY(b);
+        }
+        return netForceByY;
     }
 }
