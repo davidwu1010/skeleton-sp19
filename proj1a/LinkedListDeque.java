@@ -49,7 +49,15 @@ public class LinkedListDeque<T> {
     }
 
     public T get(int index) {
-        return null;
+        if (index < 0 || index + 1 > _size ) {
+            return null;
+        }
+        Node<T> p = head.next;
+        while (index > 0) {
+            p = p.next;
+            --index;
+        }
+        return p.item;
     }
 
     public T getRecursive(int index) {
