@@ -10,7 +10,7 @@ public class LinkedListDeque<T> {
 
     public LinkedListDeque() {
         _size = 0;
-        head = new Node<T>();
+        head = new Node<>();
         head.prev = head;
         head.next = head;
     }
@@ -41,11 +41,23 @@ public class LinkedListDeque<T> {
     }
 
     public T removeFirst() {
-        return null;
+        if (_size == 0) {
+            return null;
+        }
+        T item = head.next.item;
+        head.next = head.next.next;
+        head.next.prev = head;
+        return item;
     }
 
     public T removeLast() {
-        return null;
+        if (_size == 0) {
+            return null;
+        }
+        T item = head.prev.item;
+        head.prev = head.prev.prev;
+        head.prev.next = head;
+        return item;
     }
 
     public T get(int index) {
