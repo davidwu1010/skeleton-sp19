@@ -17,9 +17,25 @@ public class LinkedListDeque<T> {
 
     public LinkedListDeque(LinkedListDeque<T> other) {}
 
-    public void addFirst(T item) {}
+    public void addFirst(T item) {
+        Node<T> node = new Node<>();
+        node.prev = head;
+        node.item = item;
+        node.next = head.next;
 
-    public void addLast(T item) {}
+        head.next = node;
+        node.next.prev = node;
+    }
+
+    public void addLast(T item) {
+        Node<T> node = new Node<>();
+        node.prev = head.prev;
+        node.item = item;
+        node.next = head;
+
+        head.prev = node;
+        node.prev.next = node;
+    }
 
     public boolean isEmpty() {
         return _size == 0;
