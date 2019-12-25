@@ -1,4 +1,6 @@
 public class LinkedListDeque<T> {
+    public LinkedListDeque() {}
+    public LinkedListDeque(LinkedListDeque<T> other) {}
     public void addFirst(T item) {}
     public void addLast(T item) {}
     public boolean isEmpty() {
@@ -15,6 +17,9 @@ public class LinkedListDeque<T> {
         return null;
     }
     public T get(int index) {
+        return null;
+    }
+    public T getRecursive(int index) {
         return null;
     }
 }
