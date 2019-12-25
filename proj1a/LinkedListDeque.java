@@ -4,6 +4,10 @@ public class LinkedListDeque<T> {
         T item;
         Node<T> next;
     }
+
+    private int _size;
+    private Node<T> head;
+
     public LinkedListDeque() {}
     public LinkedListDeque(LinkedListDeque<T> other) {}
     public void addFirst(T item) {}
