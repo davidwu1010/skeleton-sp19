@@ -1,4 +1,9 @@
 public class LinkedListDeque<T> {
+    private static class Node<T> {
+        Node<T> prev;
+        T item;
+        Node<T> next;
+    }
     public LinkedListDeque() {}
     public LinkedListDeque(LinkedListDeque<T> other) {}
     public void addFirst(T item) {}
