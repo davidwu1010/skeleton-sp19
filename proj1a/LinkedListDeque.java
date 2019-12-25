@@ -8,7 +8,13 @@ public class LinkedListDeque<T> {
     private int _size;
     private Node<T> head;
 
-    public LinkedListDeque() {}
+    public LinkedListDeque() {
+        _size = 0;
+        head = new Node<T>();
+        head.prev = head;
+        head.next = head;
+    }
+
     public LinkedListDeque(LinkedListDeque<T> other) {}
     public void addFirst(T item) {}
     public void addLast(T item) {}
