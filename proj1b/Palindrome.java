@@ -19,4 +19,17 @@ public class Palindrome {
 
         return true;
     }
+
+    public boolean isPalindrome(String word, CharacterComparator cc) {
+        if (word.length() <= 1) return true;
+
+        Deque<Character> deque = wordToDeque(word);
+        while (deque.size() > 1) {
+            char front = deque.removeFirst();
+            char end = deque.removeLast();
+            if (!cc.equalChars(front, end)) return false;
+        }
+
+        return true;
+    }
 }

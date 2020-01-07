@@ -17,7 +17,7 @@ public class TestPalindrome {
     }
 
     @Test
-    public void testIsPalindrome() {
+    public void testIsPalindrome1() {
         assertTrue(palindrome.isPalindrome(""));
         assertTrue(palindrome.isPalindrome("a"));
         assertFalse(palindrome.isPalindrome("ab"));
@@ -25,5 +25,17 @@ public class TestPalindrome {
         assertFalse(palindrome.isPalindrome("abA"));
         assertTrue(palindrome.isPalindrome("abba"));
         assertTrue(palindrome.isPalindrome("abcba"));
+    }
+
+    @Test
+    public void testIsPalindrome2() {
+        CharacterComparator cc = new OffByOne();
+        assertTrue(palindrome.isPalindrome("", cc));
+        assertTrue(palindrome.isPalindrome("a", cc));
+        assertTrue(palindrome.isPalindrome("ab", cc));
+        assertTrue(palindrome.isPalindrome("abb", cc));
+        assertTrue(palindrome.isPalindrome("bba", cc));
+        assertTrue(palindrome.isPalindrome("abcb", cc));
+        assertFalse(palindrome.isPalindrome("aba", cc));
     }
 }
