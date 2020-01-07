@@ -6,4 +6,17 @@ public class Palindrome {
         }
         return deque;
     }
+
+    public boolean isPalindrome(String word) {
+        if (word.length() <= 1) return true;
+
+        Deque<Character> deque = wordToDeque(word);
+        while (deque.size() > 1) {
+            char front = deque.removeFirst();
+            char end = deque.removeLast();
+            if (front != end) return false;
+        }
+
+        return true;
+    }
 }
