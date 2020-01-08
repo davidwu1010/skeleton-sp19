@@ -47,5 +47,18 @@ public class TestArrayRingBuffer {
         assertEquals(5, arb.dequeue());
         arb.enqueue(6);
         assertEquals(6, arb.dequeue());
+
+        ArrayRingBuffer<Integer> buffer = new ArrayRingBuffer<>(4);
+        buffer.enqueue(4);
+        buffer.enqueue(3);
+        buffer.enqueue(2);
+        buffer.enqueue(1);
+        var iterator = buffer.iterator();
+        assertTrue(iterator.hasNext());
+        assertEquals(4, iterator.next().intValue());
+        assertEquals(3, iterator.next().intValue());
+        assertEquals(2, iterator.next().intValue());
+        assertEquals(1, iterator.next().intValue());
+        assertFalse(iterator.hasNext());
     }
 }
