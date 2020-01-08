@@ -1,5 +1,6 @@
 package creatures;
 
+import edu.princeton.cs.algs4.StdRandom;
 import huglife.Creature;
 import huglife.Direction;
 import huglife.Action;
@@ -114,24 +115,38 @@ public class Plip extends Creature {
      * scoop on how Actions work. See SampleCreature.chooseAction()
      * for an example to follow.
      */
+    @Override
     public Action chooseAction(Map<Direction, Occupant> neighbors) {
         // Rule 1
         Deque<Direction> emptyNeighbors = new ArrayDeque<>();
         boolean anyClorus = false;
-        // TODO
-        // (Google: Enhanced for-loop over keys of NEIGHBORS?)
-        // for () {...}
-
-        if (false) { // FIXME
-            // TODO
+        for (Direction d: neighbors.keySet()) {
+            if (neighbors.get(d).name().equals("empty")) {
+                emptyNeighbors.add(d);
+            }
+            if (neighbors.get(d).name().equals("clorus")) {
+                anyClorus = true;
+            }
         }
 
-        // Rule 2
-        // HINT: randomEntry(emptyNeighbors)
+        if (emptyNeighbors.isEmpty()) {
+            return new Action(Action.ActionType.STAY);
+        } else if (energy >= 1.0) {
+            Direction d = randomDirection(emptyNeighbors);
+            return new Action(Action.ActionType.REPLICATE, d);
+        } else if (anyClorus) {
+            if (StdRandom.uniform(2) == 1) {
+                Direction d = randomDirection(emptyNeighbors);
+                return new Action(Action.ActionType.MOVE, d);
+            }
+            return new Action(Action.ActionType.STAY);
+        } else {
+            return new Action(Action.ActionType.STAY);
+        }
+    }
 
-        // Rule 3
-
-        // Rule 4
-        return new Action(Action.ActionType.STAY);
+    private Direction randomDirection(Deque<Direction> deque) {
+        int n = StdRandom.uniform(deque.size());
+        return deque.toArray(new Direction[0])[n];
     }
 }
