@@ -4,12 +4,14 @@ import java.util.Arrays;
 public class UnionFind {
 
     private int vertices[];
+    public int size;
 
     /* Creates a UnionFind data structure holding n vertices. Initially, all
        vertices are in disjoint sets. */
     public UnionFind(int n) {
         vertices = new int[n];
         Arrays.fill(vertices, -1);
+        size = n;
     }
 
     /* Throws an exception if v1 is not a valid index. */
@@ -57,24 +59,31 @@ public class UnionFind {
             vertices[root1] += vertices[root2];
             vertices[root2] = root1;
         }
+        --size;
     }
 
     /* Returns the root of the set V belongs to. Path-compression is employed
        allowing for fast search-time. */
     public int find(int vertex) {
         int root = vertex;
-        while (parent(root) > 0) {
+        while (parent(root) >= 0) {
             root = parent(root);
         }
 
-        int next = parent(vertex);
-        int current = vertex;
-        while (next > 0) {
-            vertices[current] = root;
-            current = next;
-            next = parent(current);
+        while (vertex != root) {
+            int temp = vertices[vertex];
+            vertices[vertex] = root;
+            vertex = temp;
         }
 
         return root;
+    }
+
+    public static void main(String[] args) {
+        UnionFind uf = new UnionFind(3);
+        uf.union(1, 0);
+        uf.union(2, 0);
+        uf.union(2, 1);
+        System.out.println("shit");
     }
 }
