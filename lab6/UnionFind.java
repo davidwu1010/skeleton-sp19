@@ -1,4 +1,3 @@
-import javax.naming.PartialResultException;
 import java.util.Arrays;
 
 public class UnionFind {
@@ -77,13 +76,5 @@ public class UnionFind {
         }
 
         return root;
-    }
-
-    public static void main(String[] args) {
-        UnionFind uf = new UnionFind(3);
-        uf.union(1, 0);
-        uf.union(2, 0);
-        uf.union(2, 1);
-        System.out.println("shit");
     }
 }
