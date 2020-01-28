@@ -140,6 +140,15 @@ public class TestMyHashMap {
         assertEquals(studentIDs.get("evil alan"), studentIDs.get("alan"));
     }
 
+    @Test
+    public void myTest() {
+        MyHashMap<String, Integer> map = new MyHashMap<>(1);
+        map.put("fuck", 1);
+        map.put("shit", 2);
+        assertEquals(2, map.get("shit").intValue());
+        assertEquals(1, map.get("fuck").intValue());
+    }
+
     public static void main(String[] args) {
         jh61b.junit.TestRunner.runTests(TestMyHashMap.class);
     }
