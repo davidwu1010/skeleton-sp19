@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
+// check if it is a bipartite graph
 public class SeparableEnemySolver {
 
     Graph g;
@@ -23,8 +24,37 @@ public class SeparableEnemySolver {
      * Returns true if input is separable, false otherwise.
      */
     public boolean isSeparable() {
-        // TODO: Fix me
-        return false;
+        Map<String, Integer> colors = new HashMap<>();
+        for (String label: g.labels()) {
+            if (!colors.containsKey(label)) {
+                if (helper(label, colors) == false) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    private boolean helper(String label, Map<String, Integer> colors) {
+        Queue<String> queue = new ArrayDeque<>();
+        queue.add(label);
+        colors.put(label, 1);
+
+        while (!queue.isEmpty()) {
+            String node = queue.remove();
+            int color = colors.get(node);
+            for (String neighbor: g.neighbors(node)) {
+                if (!colors.containsKey(neighbor)) {
+                    colors.put(neighbor, -color);
+                    queue.add(neighbor);
+                } else if (colors.containsKey(neighbor) && (colors.get(neighbor) == color)) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 
 
